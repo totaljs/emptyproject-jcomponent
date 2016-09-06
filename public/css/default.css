@@ -1,0 +1,9 @@
+/*auto*/
+
+$color             : #67B13D;
+
+.center { text-align: center; }
+.right { text-align: right; }
+
+.linkbutton { display: inline-block; position: relative; padding: 15px 80px; color: $color; border: 2px solid $color; text-decoration: none; border-radius: 4px; }
+.linkbutton:hover { color: white; background-color: $color; text-decoration: none; }
