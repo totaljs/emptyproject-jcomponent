@@ -1,8 +1,10 @@
 exports.install = function() {
 
-	// Enables CORS for entire API
-	CORS('/api/*', ['get', 'post', 'put', 'delete'], true);
+	ROUTE('GET  /api/dashboard/', ['*Dashboard --> @query']);
 
-	// Your routes
-	// ROUTE('/api/', action, []);
+	ROUTE('GET  /api/users/',     ['*User --> @query']);
+	ROUTE('POST /api/users/',     ['*User --> @insert']);
+
+	ROUTE('GET  /api/products/',  ['*Product --> @query']);
+
 };
