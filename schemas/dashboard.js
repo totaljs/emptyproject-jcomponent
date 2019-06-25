@@ -7,6 +7,8 @@ NEWSCHEMA('Dashboard', function(schema) {
 		for (var i = 0; i < 10; i++)
 			arr.push({ name: 'Dashboard ' + U.GUID(10) });
 
+
+		$.redirect('/kokotaris/');
 		$.callback(arr);
 	});
 
