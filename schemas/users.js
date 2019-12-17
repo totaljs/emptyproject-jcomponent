@@ -1,4 +1,4 @@
-NEWSCHEMA('User', function(schema) {
+NEWSCHEMA('Users', function(schema) {
 
 	schema.define('name', 'Capitalize(30)', true);
 

@@ -1,4 +1,4 @@
-NEWSCHEMA('Product', function(schema) {
+NEWSCHEMA('Products', function(schema) {
 
 	schema.setQuery(function($) {
 
