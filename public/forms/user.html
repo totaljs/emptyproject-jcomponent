@@ -1,4 +1,4 @@
-<div data---="form__common.form__if:user;width:500;icon:user;submit:?/submit;reload:?/reload" class="hidden" data-scope="usersform">
+<div data---="form__common.form__if:user;width:500;icon:user;submit:?/submit;reload:?/reload;autofocus:1" class="hidden" data-scope="usersform">
 	<div class="padding">
 		<div data---="input__?.name__required:1;maxlength:50" class="m">User name</div>
 	</div>
@@ -14,7 +14,7 @@
 
 		exports.reload = function(com) {
 			var model = GET('?');
-			com.reconfigure('title:' + (model.id ? 'Edit user' : 'Add user'));
+			com.reconfigure({ title: model.id ? 'Edit user' : 'Add user' });
 		};
 
 		exports.submit = function(hide) {
@@ -23,7 +23,7 @@
 				// Refresh data in grid
 				EXEC('users/refresh');
 				hide();
-			});
+			}));
 		};
 	});
 
