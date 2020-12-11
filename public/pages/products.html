@@ -1,17 +1,18 @@
-<h1>Products</h1>
-
-<div data-bind="products.grid__template">
-	<script type="text/html">
-		{{ foreach m in value }}
-			<div>{{ m.name }}</div>
-		{{ end }}
-	</script>
+<div data-scope="products">
+	<h1>Products</h1>
+	<div data-bind="?.data__template">
+		<script type="text/html">
+			{{ foreach m in value }}
+				<div>{{ m.name }}</div>
+			{{ end }}
+		</script>
+	</div>
 </div>
 
 <script>
 	PLUGIN('products', function(exports) {
 		exports.refresh = function() {
-			AJAX('GET /api/products/', 'products.grid');
+			AJAX('GET /api/products/ @showloading', '?.data @hideloading');
 		};
 	});
 </script>

@@ -1,12 +1,8 @@
-<div data---="form__common.form__if:user;width:500;icon:user;submit:usersform/submit;reload:usersform/reload" class="hidden">
-	<div data-scope="usersform">
-		<div class="padding">
-			<div data---="textbox__?.name__required:true;maxlength:50" class="m">User name</div>
-			<br />
-			<div data---="error__?.response"></div>
-		</div>
+<div data---="form__common.form__if:user;width:500;icon:user;submit:?/submit;reload:?/reload" class="hidden" data-scope="usersform">
+	<div class="padding">
+		<div data---="input__?.name__required:1;maxlength:50" class="m">User name</div>
 	</div>
-	<nav data---="validation__usersform">
+	<nav data---="validation__?">
 		<button name="submit" disabled="disabled">SUBMIT</button>
 		<button name="cancel">Cancel</button>
 	</nav>
@@ -21,19 +17,12 @@
 			com.reconfigure('title:' + (model.id ? 'Edit user' : 'Add user'));
 		};
 
-		exports.submit = function(com) {
-
-			AJAX('POST /api/users/ REPEAT', GETR('?'), function(response) {
-
-				// Error processing
-				SET('?.response', response);
-
-				if (response.success) {
-					// Refresh data in grid
-					EXEC('users/refresh');
-					com.hide();
-				}
-
+		exports.submit = function(hide) {
+			var model = GET('? @reset');
+			AJAX('POST /api/users/ @showloading', model, ASETTER('message/response @hideloading', function(response) {
+				// Refresh data in grid
+				EXEC('users/refresh');
+				hide();
 			});
 		};
 	});

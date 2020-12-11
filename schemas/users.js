@@ -12,7 +12,7 @@ NEWSCHEMA('Users', function(schema) {
 		$.callback(arr);
 	});
 
-	schema.setInsert(function($) {
+	schema.setInsert(function($, model) {
 		$.invalid('Internal server error');
 	});
 

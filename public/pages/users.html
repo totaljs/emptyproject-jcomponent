@@ -1,30 +1,31 @@
-<h1>Users</h1>
+<div data-scope="users">
+	<h1>Users</h1>
 
-<div>
-	<span class="exec link" data-exec="users/add">Add user</span>
-</div>
-<br />
+	<div>
+		<span class="exec link" data-exec="?/add">Add user</span>
+	</div>
+	<br />
 
-<div data-bind="users.grid__template">
-	<script type="text/html">
-		{{ foreach m in value }}
-			<div>{{ m.name }}</div>
-		{{ end }}
-	</script>
+	<div data-bind="?.data__template">
+		<script type="text/html">
+			{{ foreach m in value }}
+				<div>{{ m.name }}</div>
+			{{ end }}
+		</script>
+	</div>
 </div>
 
 <div data---="importer__common.form__if:user;url:/forms/user.html"></div>
-
 
 <script>
 	PLUGIN('users', function(exports) {
 
 		exports.refresh = function() {
-			AJAX('GET /api/users/', 'users.grid');
+			AJAX('GET /api/users/ @showloading', '?.data @hideloading');
 		};
 
 		exports.add = function() {
-			SET('usersform', {}, true);
+			SET('usersform @default', {});
 			SET('common.form', 'user');
 		};
 	});

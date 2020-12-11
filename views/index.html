@@ -11,13 +11,14 @@
 	<meta name="robots" content="all,follow" />
 	<link rel="stylesheet" href="//cdn.componentator.com/spa.min@18.css" />
 	<script src="//cdn.componentator.com/spa.min@18.js"></script>
-	@{import('meta', 'head', 'default.css', 'default.js', 'favicon.ico')}
+	@{import('meta', 'head', 'default.css + ui.css', 'default.js + ui.js', 'favicon.ico')}
 </head>
 <body data---="exec">
 
-	<div data---="LAZY calendar"></div>
-	<div data---="LAZY confirm"></div>
-	<div data---="LAZY message"></div>
+	<div data---="LAZY datepicker"></div>
+	<div data---="LAZY approve"></div>
+	<div data---="LAZY message__null__style:2"></div>
+	<div data---="loading" class="hidden"></div>
 
 	<div class="container">
 
@@ -38,6 +39,14 @@
 		NAV.clientside('.R');
 
 		var common = {};
+
+		ON('@flag showloading', function() {
+			SETTER('loading/show');
+		});
+
+		ON('@flag hideloading', function() {
+			SETTER('loading/hide', 1000);
+		});
 
 		ROUTE('/', function() {
 			SET('common.page', 'dashboard');

@@ -1,17 +1,18 @@
-<h1>Dashboard</h1>
-
-<div data-bind="dashboard.grid__template">
-	<script type="text/html">
-		{{ foreach m in value }}
-			<div>{{ m.name }}</div>
-		{{ end }}
-	</script>
+<div data-scope="dashboard">
+	<h1>Dashboard</h1>
+	<div data-bind="?.data__template">
+		<script type="text/html">
+			{{ foreach m in value }}
+				<div>{{ m.name }}</div>
+			{{ end }}
+		</script>
+	</div>
 </div>
 
 <script>
 	PLUGIN('dashboard', function(exports) {
 		exports.refresh = function() {
-			AJAX('GET /api/dashboard/', 'dashboard.grid');
+			AJAX('GET /api/dashboard/ @showloading', '?.data  @hideloading');
 		};
 	});
 </script>
