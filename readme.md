@@ -1,4 +1,4 @@
-# Empty project: jComponent
+# Empty project: SPA
 
 - [Documentation](https://docs.totaljs.com)
 - [Join Total.js Telegram](https://t.me/totaljs)
