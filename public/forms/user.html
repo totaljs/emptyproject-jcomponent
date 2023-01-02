@@ -1,29 +1,34 @@
-<div data---="form__common.form__if:user;width:500;icon:user;submit:?/submit;reload:?/reload;autofocus:1" class="hidden" data-scope="usersform">
-	<div class="padding">
-		<div data---="input__?.name__required:1;maxlength:50" class="m">User name</div>
-	</div>
-	<nav data---="validation__?">
-		<button name="submit" disabled="disabled">SUBMIT</button>
-		<button name="cancel">Cancel</button>
-	</nav>
-</div>
+<ui-component name="form" path="common.form" config="if:user;width:500;icon:user;submit:?/submit;reload:?/reload;autofocus:1" class="hidden">
+	<ui-plugin path="usersform">
+		<div class="padding">
+			<ui-component name="input" path="?.name" config="required:1;maxlength:50" class="m">User name</ui-component>
+		</div>
+		<nav>
+			<ui-component name="validate" path="?">
+				<button name="submit" disabled="disabled">SUBMIT</button>
+				<button name="cancel">Cancel</button>
+			</ui-component>
+		</nav>
+	</ui-plugin>
+</ui-component>
 
 <script>
 
 	PLUGIN('usersform', function(exports) {
 
 		exports.reload = function(com) {
-			var model = GET('?');
+			var model = exports.model;
 			com.reconfigure({ title: model.id ? 'Edit user' : 'Add user' });
 		};
 
 		exports.submit = function(hide) {
-			var model = GET('? @reset');
-			AJAX('POST /api/users/ @showloading', model, ASETTER('message/response @hideloading', function(response) {
+			var model = exports.form;
+			exports.ajax('POST /api/users/ @showloading ERROR', model, function(response) {
+				// exports.caller "users" plugin
 				// Refresh data in grid
-				EXEC('users/refresh');
+				exports.caller && exports.caller.exec('refresh');
 				hide();
-			}));
+			});
 		};
 	});
 

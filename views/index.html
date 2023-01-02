@@ -9,16 +9,17 @@
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="robots" content="all,follow" />
-	<link rel="stylesheet" href="//cdn.componentator.com/spa.min@18.css" />
-	<script src="//cdn.componentator.com/spa.min@18.js"></script>
+	<link rel="stylesheet" href="//cdn.componentator.com/spa.min@19.css" />
+	<script src="//cdn.componentator.com/spa.min@19.js"></script>
 	@{import('meta', 'head', 'default.css + ui.css', 'default.js + ui.js', 'favicon.ico')}
 </head>
-<body data---="exec">
+<body>
 
-	<div data---="LAZY datepicker"></div>
-	<div data---="LAZY approve"></div>
-	<div data---="LAZY message__null__style:2"></div>
-	<div data---="loading" class="hidden"></div>
+	<ui-component name="exec"></ui-component>
+	<ui-component name="LAZY datepicker"></ui-component>
+	<ui-component name="LAZY approve"></ui-component>
+	<ui-component name="LAZY message" config="style:2"></ui-component>
+	<ui-component name="loading" class="hidden"></ui-component>
 
 	<div class="container">
 
@@ -28,9 +29,9 @@
 			<a href="/products/" class="R">Products</a>
 		</nav>
 
-		<div data---="part__common.page__if:dashboard;url:/pages/dashboard.html;reload:dashboard/refresh"></div>
-		<div data---="part__common.page__if:users;url:/pages/users.html;reload:users/refresh"></div>
-		<div data---="part__common.page__if:products;url:/pages/products.html;reload:products/refresh"></div>
+		<ui-component name="part" path="common.page" config="if:dashboard;url:/pages/dashboard.html;reload:dashboard/refresh"></ui-component>
+		<ui-component name="part" path="common.page" config="if:users;url:/pages/users.html;reload:users/refresh"></ui-component>
+		<ui-component name="part" path="common.page" config="if:products;url:/pages/products.html;reload:products/refresh"></ui-component>
 
 	</div>
 

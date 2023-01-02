@@ -1,8 +1,8 @@
-<div data-scope="users">
+<ui-plugin path="~PATH~">
 	<h1>Users</h1>
 
 	<div>
-		<span class="exec link" data-exec="?/add">Add user</span>
+		<span class="exec link" data-exec="?/create">Add user</span>
 	</div>
 	<br />
 
@@ -13,18 +13,18 @@
 			{{ end }}
 		</script>
 	</div>
-</div>
+</ui-plugin>
 
-<div data---="importer__common.form__if:user;url:/forms/user.html"></div>
+<ui-component name="importer" path="common.form" config="if:user;url:/forms/user.html"></ui-component>
 
 <script>
-	PLUGIN('users', function(exports) {
+	PLUGIN(function(exports) {
 
 		exports.refresh = function() {
-			AJAX('GET /api/users/ @showloading', '?.data @hideloading');
+			exports.ajax('GET /api/users/ @showloading', 'data @hideloading');
 		};
 
-		exports.add = function() {
+		exports.create = function() {
 			SET('usersform @default', {});
 			SET('common.form', 'user');
 		};

@@ -1,18 +1,18 @@
-<div data-scope="products">
+<ui-plugin path="~PATH~">
 	<h1>Products</h1>
-	<div data-bind="?.data__template">
+	<ui-bind path="?.data" config="template">
 		<script type="text/html">
 			{{ foreach m in value }}
 				<div>{{ m.name }}</div>
 			{{ end }}
 		</script>
-	</div>
-</div>
+	</ui-bind>
+</ui-plugin>
 
 <script>
-	PLUGIN('products', function(exports) {
+	PLUGIN(function(exports) {
 		exports.refresh = function() {
-			AJAX('GET /api/products/ @showloading', '?.data @hideloading');
+			exports.ajax('GET /api/products/ @showloading', 'data @hideloading');
 		};
 	});
 </script>
