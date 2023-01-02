@@ -12,10 +12,10 @@ NEWSCHEMA('Users', function(schema) {
 		}
 	});
 
-	schema.action('Create', {
+	schema.action('create', {
 		name: 'Create a user',
 		action: function($, model) {
-			$.invalid('Internal server error');
+			$.invalid('Not implemented');
 		}
 	});
 

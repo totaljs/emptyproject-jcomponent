@@ -1,20 +1,18 @@
-<ui-component name="form" path="common.form" config="if:user;width:500;icon:user;submit:?/submit;reload:?/reload;autofocus:1" class="hidden">
-	<ui-plugin path="usersform">
-		<div class="padding">
-			<ui-component name="input" path="?.name" config="required:1;maxlength:50" class="m">User name</ui-component>
-		</div>
-		<nav>
-			<ui-component name="validate" path="?">
-				<button name="submit" disabled="disabled">SUBMIT</button>
-				<button name="cancel">Cancel</button>
-			</ui-component>
-		</nav>
-	</ui-plugin>
+<ui-component name="form" path="common.form" config="if:user;width:500;icon:user;submit:?/submit;reload:?/reload;autofocus:1" plugin="~PATH~" class="hidden">
+	<div class="padding">
+		<ui-component name="input" path="?.name" config="required:1;maxlength:50" class="m">User name</ui-component>
+	</div>
+	<nav>
+		<ui-component name="validate" path="?">
+			<button name="submit" disabled="disabled">SUBMIT</button>
+			<button name="cancel">Cancel</button>
+		</ui-component>
+	</nav>
 </ui-component>
 
 <script>
 
-	PLUGIN('usersform', function(exports) {
+	PLUGIN(function(exports) {
 
 		exports.reload = function(com) {
 			var model = exports.model;
